@@ -10,14 +10,14 @@ function ACL:access(plugin_conf)
     ACL.super.access(self)
 
     local whitelist = plugin_conf.whitelist
-    local userroles = get_user_roles()
+    local userroles = get_user_roles(plugin_conf.userinfo_header_name)
 
     if has_value(whitelist, userroles) then
         return
     else
-        ngx.status = 401
-        ngx.say("You cannot consume this service")
-        ngx.exit(ngx.HTTP_UNAUTHORIZED)
+        return kong.response.exit(403, {
+            message = "You cannot consume this service"
+          })
     end
 
 end
@@ -50,10 +50,10 @@ function mysplit(inputstr, sep)
 end
 
 
-function get_user_roles()
+function get_user_roles(userinfo_header_name)
     local h = ngx.req.get_headers()
     for k, v in pairs(h) do
-        if k == 'x-userinfo' then
+        if string.lower(k) == string.lower(userinfo_header_name) then
             local user_info = cjson.decode(ngx.decode_base64(v))
             local roles = table.concat(user_info["realm_access"]["roles"],",")
             return mysplit(roles, ",")
