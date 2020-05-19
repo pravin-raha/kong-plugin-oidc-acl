@@ -1,5 +1,5 @@
 package = "kong-plugin-oidc-acl"
-version = "1.0-0"
+version = "1.0-1"
 local pluginName = "oidc-acl"
 source = {
   url = "git://github.com/pravin-raha/kong-plugin-oidc-acl",
@@ -9,8 +9,7 @@ description = {
   license = "Apache 2.0"
 }
 dependencies = {
-  "lua ~> 5.1",
-  "lua-resty-cookie ~> 0.1.0"
+  "lua ~> 5.1"
 }
 build = {
   type = "builtin",

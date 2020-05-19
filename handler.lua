@@ -1,6 +1,5 @@
-local responses = require "kong.tools.responses"
 local ACL = require("kong.plugins.base_plugin"):extend()
-
+local cjson = require("cjson")
 
 function ACL:new()
     ACL.super.new(self, "oidc-acl")
@@ -16,7 +15,9 @@ function ACL:access(plugin_conf)
     if has_value(whitelist, userroles) then
         return
     else
-        return responses.send_HTTP_FORBIDDEN("You cannot consume this service")
+        ngx.status = 401
+        ngx.say("You cannot consume this service")
+        ngx.exit(ngx.HTTP_UNAUTHORIZED)
     end
 
 end
@@ -52,8 +53,10 @@ end
 function get_user_roles()
     local h = ngx.req.get_headers()
     for k, v in pairs(h) do
-        if k == 'x-oauth-role' then
-            return mysplit(v, ",")
+        if k == 'x-userinfo' then
+            local user_info = cjson.decode(ngx.decode_base64(v))
+            local roles = table.concat(user_info["realm_access"]["roles"],",")
+            return mysplit(roles, ",")
         end
     end
 
