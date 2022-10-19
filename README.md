@@ -5,12 +5,12 @@ Restrict access to a Service or a Route by whitelisting or blacklisting user usi
 
 Install luarocks and run the following command
 
-```
+```bash
 luarocks install kong-plugin-oidc-acl
 ```
 You also need to set the KONG_PLUGINS environment variable
 
-```
+```bash
 export KONG_PLUGINS=bundled,oidc-acl
 ```
 
@@ -32,7 +32,7 @@ curl -X POST http://localhost:8001/services/{ID}/plugins \
 
 ## License
 
-Copyright 2020 Pravin Rahangdale
+Copyright 2022 Pravin Rahangdale
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

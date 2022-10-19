@@ -1,8 +1,9 @@
 package = "kong-plugin-oidc-acl"
-version = "1.0-2"
+version = "1.0-3"
 local pluginName = "oidc-acl"
 source = {
   url = "git://github.com/pravin-raha/kong-plugin-oidc-acl",
+  tag = "v1.0-3"
 }
 description = {
   summary = "A Kong ACL plugin for oidc plugin",
