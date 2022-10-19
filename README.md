@@ -25,9 +25,11 @@ curl -X POST http://localhost:8001/services/{ID}/plugins \
     --data "config.whitelist=user"
 ```
 
-|Form Parameter          | Default    | Required   | Description                                                                  |
-|------------------------|------------|------------|------------------------------------------------------------------------------|
-| `userinfo_header_name` | x-userinfo | *optional* | The name of the HTTP header from where role names is going to be extracted. This should be same as what you have set in oidc plugin  |
+| Form Parameter         | Default    | Required        | Description                                                                                                                         |
+|------------------------|------------|-----------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| `userinfo_header_name` | x-userinfo | *optional*      | The name of the HTTP header from where role names is going to be extracted. This should be same as what you have set in oidc plugin |
+| `whitelist`            |            | *semi-optional* | The name of the role to allow                                                                                                       |
+| `blacklist`            |            | *semi-optional* | The name of the role to not allow                                                                                                   |
 
 
 ## License
