@@ -25,4 +25,3 @@ jobs:
 #      - name: test
 #        run: |
 #          busted spec/ -o utfTerminal
-Footer
