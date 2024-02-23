@@ -1,6 +1,6 @@
 local ACL = {
     PRIORITY = 950,
-    VERSION = "1.0-3",
+    VERSION = "1.0-4",
 }
 local cjson = require("cjson")
 
