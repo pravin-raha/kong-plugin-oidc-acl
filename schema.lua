@@ -13,12 +13,11 @@ return {
                     { blacklist = { type = "array", elements = { type = "string" }, required = false } },
                     { userinfo_header_name = { type = "string", required = false, default = "x-userinfo" } }
                 },
-                entity_checks = {
-                    { only_one_of = { "config.whitelist", "config.blacklist" }, },
-                    { at_least_one_of = { "config.whitelist", "config.blacklist" }, },
-                },
-
             },
+        },
+        entity_checks = {
+            { only_one_of = { "config.whitelist", "config.blacklist" }, },
+            { at_least_one_of = { "config.whitelist", "config.blacklist" }, },
         },
     }
 }
